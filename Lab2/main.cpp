@@ -3,7 +3,7 @@
 using namespace std;
 
 typedef struct Node{
-    Node* data;
+    string data;
     Node* next;
 }Node;
 
@@ -26,18 +26,14 @@ void displayChain(Node* n){
     return;
 }
 
-void eraseData(Node* head){
-    Node* current = head;
-    Node* next_node;
-
-    next_node = current->next;
-    delete current;
-    current = next_node;
-    return;
-
-
-
+void eraseData(Node** head_ref) {
+    if (*head_ref == nullptr) return;
+    Node* temp = *head_ref;
+    *head_ref = (*head_ref)->next;
+    delete temp;
 }
+
+
 
 int main()
 {
@@ -56,11 +52,12 @@ int main()
         if(x == "UNDO")
         {
             eraseData(&head);
+            continue;
         }
 
         addWord(&head, x);
         displayChain(head);
-
+        cout << endl;
     }
 
     return 0;
