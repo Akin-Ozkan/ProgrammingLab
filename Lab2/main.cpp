@@ -30,12 +30,9 @@ void eraseData(Node* head){
     Node* current = head;
     Node* next_node;
 
-    while(current != nullptr)
-    {
-        next_node = current->next;
-        delete current;
-        current = next_node;
-    }
+    next_node = current->next;
+    delete current;
+    current = next_node;
     return;
 
 
@@ -44,9 +41,7 @@ void eraseData(Node* head){
 
 int main()
 {
-    Node* word_list = nullptr;
-    Node* head = new Node();
-    head->data = nullptr;
+    Node* head = nullptr;
 
     string x = "START";
     while(x != "EXIT"){
@@ -60,10 +55,11 @@ int main()
 
         if(x == "UNDO")
         {
-            eraseData(head);
+            eraseData(&head);
         }
 
-        addWord(&word_list, x);
+        addWord(&head, x);
+        displayChain(head);
 
     }
 
