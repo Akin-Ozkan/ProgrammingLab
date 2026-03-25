@@ -61,13 +61,45 @@ void removeMemory(Song* head) {
     }
 }
 
-int listen(Song* current, int status) //Next Prev fonksiyonu
+Song* listen(Song* current, int status) //Next Prev fonksiyonu
 {
+    if(status == 1)
+       {
+           if(current->prev == nullptr)
+           {
+               cout << "This is the first song." << endl;
+           }
+           else
+           {
+                current = current->prev;
+                return current;
+           }
+       }
 
+    if(status == 2)
+       {
+           if(current->next == nullptr)
+           {
+               cout << "This is the last song." << endl;
+           }
+           else
+           {
+                current = current->next;
+                return current;
+           }
+       }
 }
 
-void removeSong()
+void removeSong(Song* current)
 {
+    Song* temporal = new Song();
+    temporal = current->prev;
+
+    current->prev = nullptr;
+    temporal->next = current->next;
+    current->next = nullptr;
+    delete current;
+
 
 }
 
@@ -126,7 +158,7 @@ int main()
         cout << "1)Back, 2)Forward, 3)Delete, 4)Exit";
         cin >> status;
 
-        switch()
+        switch(status)
         {
             case 1:
                 listen(current, status);
@@ -139,6 +171,4 @@ int main()
                 return 0;
         }
     }
-
-
 }
