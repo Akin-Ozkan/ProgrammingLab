@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-struct Package(){
+struct Package{
     string packageID;
     string destinationCity;
     int dimensions[3];
@@ -11,15 +11,30 @@ struct Package(){
 struct Courier{
     string courierName;
     string vehicleType;
-    int front;
-    int rear;
-
 };
 
+Courier c[5];
+int frontc = -1;
+int rearc = -1;
 
-push()
+void push(Package** top)
 {
+    Package* temp = new Package();
 
+    cout << "Package ID: ";
+    cin >> temp->packageID;
+
+    cout << "Destination City: ";
+    cin >> temp->destinationCity;
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Dimension " << i + 1 << ": ";
+        cin >> temp->dimensions[i];
+    }
+
+    temp->next = *top;
+    *top = temp;
 }
 
 enqueue()
@@ -40,6 +55,9 @@ display()
 
 int main()
 {
+
+    Package q;
+    Package* top = nullptr
 
     return 0;
 }
