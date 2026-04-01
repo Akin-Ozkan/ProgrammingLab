@@ -61,16 +61,46 @@ void enqueue()
     cout << "Successfully added.\n";
 }
 
-pop()
-{
+void dequeue() {
+    if (frontc == -1) {
+        cout << "Stack is empty." << endl;
+        return;
+    }
 
+    cout << "Corier deleted: " << c[frontc].courierName << endl;
+
+    if (frontc == rearc) {
+        frontc = -1;
+        rearc = -1;
+    } else {
+        frontc = (frontc + 1) % 5;
+    }
 }
 
-display()
-{
+void display(Package* top) {
+    cout << "= Packages =" << endl;
+    if (top == NULL) {
+        cout << "Stack is empty." << endl;
+    } else {
+        Package* temp = top;
+        while (temp != NULL) {
+            cout << "Paket ID: " << temp->packageID << " | Sehir: " << temp->destinationCity << endl;
+            temp = temp->next;
+        }
+    }
+    cout << "\n= Coruiers =" << endl;
+    if (frontc == -1) {
+        cout << "Staack is empty." << endl;
+    } else {
+        int i = frontc;
+        while (true) {
+            cout << "Corier: " << c[i].courierName << " [" << c[i].vehicleType << "]" << endl;
 
+            if (i == rearc) break;
+            i = (i + 1) % 5;
+        }
+    }
 }
-
 
 int main()
 {
